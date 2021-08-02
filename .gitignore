@@ -1,0 +1,7 @@
+node_modules/
+.vscode/
+public/
+build/
+.idea/
+angular-bo/
+src/environments/
