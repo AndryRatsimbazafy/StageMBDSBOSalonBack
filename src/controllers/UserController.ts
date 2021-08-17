@@ -199,7 +199,7 @@ class UserController {
       }
       const gender = ["male", "female"];
       user.forEach(async (element, index) => {
-        const age = Math.floor(Math.random() * (70 - 18 + 1) + 18);
+        const age = Math.floor(Math.random() * (50 - 18 + 1) + 18);
         const randomGender = Math.floor(Math.random() * gender.length);
         const userUpdate: any = await users.findByIdAndUpdate(
           element._id,
