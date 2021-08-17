@@ -181,6 +181,44 @@ class UserController {
   );
 
   /**
+   * @description Get all users
+   * @route   GET  /api/users/updateRandomAgeAndGender
+   * @access  Public
+   */
+  updateRandomAgeAndGender = asyncHandler(
+    async (req: Request, res: Response, NextFunction) => {
+      const asker = (req as any).user;
+      let user: any = await users.find();
+
+      if (asker && asker.role === 'admin') {
+        user = await users.find({ role: { $nin: ['admin', 'superadmin'] } });
+        if (user) user.push(asker);
+        else user = [asker];
+      } else {
+        user = await users.find();
+      }
+      const gender = ["male", "female"];
+      user.forEach(async (element, index) => {
+        const age = Math.floor(Math.random() * (70 - 18 + 1) + 18);
+        const randomGender = Math.floor(Math.random() * gender.length);
+        const userUpdate: any = await users.findByIdAndUpdate(
+          element._id,
+          {
+            age: age,
+            gender: gender[randomGender]
+          },
+          { new: true }
+        );
+        console.log(`Vita: ${index}` );
+      });
+      res.status(200).json({
+        success: true,
+        body: user,
+      });
+    }
+  );
+
+  /**
    * @description Get all exposant
    * @route   GET  /api/users/exposants
    * @access  Private: Admin

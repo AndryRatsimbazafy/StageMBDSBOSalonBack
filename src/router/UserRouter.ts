@@ -140,6 +140,8 @@ class UserRouter {
 
     this.router.get("/coachings", UserController.getCoachings)
 
+    this.router.get("/updateRandomAgeAndGender", UserController.updateRandomAgeAndGender);
+
 
     /**
      * @swagger
