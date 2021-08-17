@@ -7,6 +7,8 @@ import config from "../environments";
 export interface IUser extends mongoose.Document {
   firstName: string;
   lastName: string;
+  age: number;
+  gender: string;
   phoneNumber: string;
   postalCode: string;
   projects: string[];
@@ -53,6 +55,14 @@ let UserSchema = new Schema(
         50,
         "Le nombre maximum de caractères autorisé est de 50 caractères",
       ],
+    },
+    age: {
+      type: Number,
+      required: false,
+    },
+    gender: {
+      type: String,
+      required: false,
     },
     phoneNumber: {
       type: String,

@@ -73,13 +73,13 @@ class AuthenticationController {
         <strong>L'équipe du salon</strong>`;
 
         console.log("sending email ....")
-        await sendMail({          
-          from: `"Eventflow" <no-reply@event-flow.fr>`,
-          email,
-          subject: "SALON DE LA RENOVATION - VOTRE ACCES  📥",
-          message,
-          html,
-        });
+        // await sendMail({          
+        //   from: `"Eventflow" <no-reply@event-flow.fr>`,
+        //   email,
+        //   subject: "SALON DE LA RENOVATION - VOTRE ACCES  📥",
+        //   message,
+        //   html,
+        // });
       } catch (error) {
         if (user && user._id) {
           await users.findByIdAndDelete(user._id);
@@ -128,13 +128,13 @@ class AuthenticationController {
         `;
         console.log("sending email ....")
         /**TODO: replace test email avec contact@eventflow.fr */
-        await sendMail({
-          from: `"SALON DE LA RENOVATION" <no-reply@salonvirtuel.fr>`,
-          email: 'contact@eventflow.fr',
-          subject: "SALON DE LA RENOVATION - NOUVEAU MESSAGE 📥",
-          message: emailMessage,
-          html,
-        });
+        // await sendMail({
+        //   from: `"SALON DE LA RENOVATION" <no-reply@salonvirtuel.fr>`,
+        //   email: 'contact@eventflow.fr',
+        //   subject: "SALON DE LA RENOVATION - NOUVEAU MESSAGE 📥",
+        //   message: emailMessage,
+        //   html,
+        // });
       
     } catch (error) {
       console.log("MAIL ERROR", error)
@@ -278,13 +278,13 @@ class AuthenticationController {
       <br>`;
 
       try {
-        await sendMail({
-          from: `"Eventflow" <no-reply@event-flow.fr>`,
-          email: user.email,
-          subject: "SALON DE LA RENOVATION - Réinitialisation du mot de passe 🔑",
-          message,
-          html,
-        });
+        // await sendMail({
+        //   from: `"Eventflow" <no-reply@event-flow.fr>`,
+        //   email: user.email,
+        //   subject: "SALON DE LA RENOVATION - Réinitialisation du mot de passe 🔑",
+        //   message,
+        //   html,
+        // });
 
         res.status(200).json({
           success: true,

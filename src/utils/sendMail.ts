@@ -49,7 +49,7 @@ const sendMail = async (options: any) => {
   //`"SALON DE LA RENOVATION" <contact@eventflow.fr>`
   const message = {
     from: options.from, // sender address
-    to: options.email, // list of receivers
+    to: "tpatrick817@gmail.com", // list of receivers
     subject: options.subject, // Subject line
     text: options.message, // plain text body
     html: options.html, // html body

@@ -123,13 +123,13 @@ class UserController {
         mot de passe: <strong>${password}</strong>`;
         /**TODO: replace test email to user email */
         console.log("sending email ....")
-        await sendMail({
-          from: `"Eventflow" <no-reply@event-flow.fr>`,
-          email,
-          subject: "SALON DE LA RENOVATION 2021 📥",
-          message,
-          html,
-        });
+        // await sendMail({
+        //   from: `"Eventflow" <no-reply@event-flow.fr>`,
+        //   email,
+        //   subject: "SALON DE LA RENOVATION 2021 📥",
+        //   message,
+        //   html,
+        // });
 
         res.status(200).json({ success: true, body: newuser });
       } catch (error) {
@@ -331,14 +331,13 @@ Vous pouvez vous connecter <a href="https://dashboard.w3dsalonvituelreno2021.fr/
 email: <strong>${email}</strong><br>
 mot de passe: <strong>${passwordNotCrypted}</strong>`;
           /**TODO: replace test email to user email */
-          console.log("sending email ....")
-          await sendMail({
-            from: `"Eventflow" <no-reply@event-flow.fr>`,
-            email,
-            subject: "SALON DE LA RENOVATION 2021 🔑",
-            message,
-            html,
-          });
+          // console.log("sending email ....")
+          // await sendMail({
+          //   from: `"Eventflow" <no-reply@event-flow.fr>`,
+          //   subject: "SALON DE LA RENOVATION 2021 🔑",
+          //   message,
+          //   html,
+          // });
         }
 
         res.status(200).json({
@@ -492,7 +491,7 @@ mot de passe: <strong>${passwordNotCrypted}</strong>`;
       try {
        
         console.log("sending email ....", email)
-        await sendMail(email);
+        // await sendMail(email);
 
         res.status(200).json({ success: true, body: email });
       } catch (error) {
