@@ -5,6 +5,7 @@ import users from "../models/users";
 import { ErrorResponse, sendMail } from "../utils";
 import * as generator from "generate-password"
 import * as bcrypt from 'bcrypt';
+import { randomFill } from "crypto";
 
 class UserController {
   constructor() { }
@@ -180,6 +181,13 @@ class UserController {
     }
   );
 
+  randomDate(start, end, startHour, endHour): Date {
+    var date = new Date(+start + Math.random() * (end - start));
+    var hour = startHour + Math.random() * (endHour - startHour) | 0;
+    date.setHours(hour);
+    return date;
+  }
+
   /**
    * @description Get all users
    * @route   GET  /api/users/updateRandomAgeAndGender
@@ -197,15 +205,23 @@ class UserController {
       } else {
         user = await users.find();
       }
-      const gender = ["male", "female"];
+      const gender = ["male", "female", "other"];
+      const nationality = ["French", "Malagasy", "Belgian", "Canadian", "Luxembourgish", "Swissman", "Maurician", "Libanese", "Algerian", "Marocan", "Tunisian"];
+      const maritalStatus = ["Married", "Single", "Divorced", "Widowed"];
+
       user.forEach(async (element, index) => {
-        const age = Math.floor(Math.random() * (50 - 18 + 1) + 18);
+        //const age = Math.floor(Math.random() * (50 - 18 + 1) + 18);
         const randomGender = Math.floor(Math.random() * gender.length);
+        const randomNationality = Math.floor(Math.random() * nationality.length);
+        const randomMaritalStatus = Math.floor(Math.random() * maritalStatus.length);
+        const randomBirth = this.randomDate(new Date(1961, 0, 1), new Date(1996, 0, 1), 0, 24);
         const userUpdate: any = await users.findByIdAndUpdate(
           element._id,
           {
-            age: age,
-            gender: gender[randomGender]
+            gender: gender[randomGender],
+            nationality: nationality[randomNationality],
+            maritalStatus: maritalStatus[randomMaritalStatus],
+            birthDate: randomBirth,
           },
           { new: true }
         );

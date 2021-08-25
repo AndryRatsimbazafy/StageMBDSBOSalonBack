@@ -10,6 +10,8 @@ export interface IUser extends mongoose.Document {
   age: number;
   gender: string;
   birthDate: Date;
+  nationality: string;
+  maritalStatus: string;
   phoneNumber: string;
   postalCode: string;
   projects: string[];
@@ -67,6 +69,14 @@ let UserSchema = new Schema(
     },
     birthDate: {
       type: Date,
+      required: false,
+    },
+    nationality: {
+      type: String,
+      required: false,
+    },
+    maritalStatus: {
+      type: String,
       required: false,
     },
     phoneNumber: {
