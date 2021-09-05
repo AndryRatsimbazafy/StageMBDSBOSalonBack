@@ -1,5 +1,6 @@
 import { Router } from "express";
 import UserController from "../controllers/UserController";
+import DashBoardController from "../controllers/DashBoardController";
 import { auth } from "../middlewares";
 
 class UserRouter {

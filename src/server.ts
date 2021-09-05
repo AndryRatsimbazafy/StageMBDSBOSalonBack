@@ -25,6 +25,7 @@ import ContentsRouter from './router/ContentsRouter';
 import UnityRouter from './router/UnityRouter';
 import WebhookRouter from "./router/WebhookRouter";
 import PingRouter from './router/PingRouter';
+import DashBoardRouter from './router/DashboardRouter';
 
 // Server class
 class Server {
@@ -69,6 +70,7 @@ class Server {
         this.app.use('/api/unity', UnityRouter)
         this.app.use('/api/rooms', RoomsRouter)
         this.app.use('/api/contents', ContentsRouter)
+        this.app.use('/api/dashboard', DashBoardRouter)
         //api documentation route
         this.app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs, { explorer: true }));
 

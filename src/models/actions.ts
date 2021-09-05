@@ -34,4 +34,4 @@ let ActionsSchema = new Schema({
 
 }, { _id: true });
 
-export default mongoose.model('assets', ActionsSchema)
+export default mongoose.model('actions', ActionsSchema)

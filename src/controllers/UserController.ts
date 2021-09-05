@@ -6,6 +6,8 @@ import { ErrorResponse, sendMail } from "../utils";
 import * as generator from "generate-password"
 import * as bcrypt from 'bcrypt';
 import { randomFill } from "crypto";
+import assets from '../models/assets';
+import dashboarddata from '../models/dashboarddata';
 
 class UserController {
   constructor() { }
@@ -119,7 +121,7 @@ class UserController {
 
         const html = `<p>Bonjour, <br> <br>
         Votre compte salon de la rénovation a été créé avec succès.<br>
-        Vous pouvez vous connecter <a href="https://dashboard.w3dsalonvituelreno2021.fr/${ role=='coach' ? 'chat' : 'users'}"> ici</a> en utilisant les identifiants suivants:<br>
+        Vous pouvez vous connecter <a href="https://dashboard.w3dsalonvituelreno2021.fr/${role == 'coach' ? 'chat' : 'users'}"> ici</a> en utilisant les identifiants suivants:<br>
         email: <strong>${email}</strong><br>
         mot de passe: <strong>${password}</strong>`;
         /**TODO: replace test email to user email */
@@ -225,7 +227,7 @@ class UserController {
           },
           { new: true }
         );
-        console.log(`Vita: ${index}` );
+        console.log(`Vita: ${index}`);
       });
       res.status(200).json({
         success: true,
@@ -297,9 +299,9 @@ class UserController {
   getOne = asyncHandler(
     async (req: Request, res: Response, next: NextFunction) => {
       const _id = req.params._id;
-      
+
       console.log('_id', _id);
-      
+
       const user: any = await users.findById(_id);
 
       res.status(200).json({
@@ -506,14 +508,14 @@ mot de passe: <strong>${passwordNotCrypted}</strong>`;
    * @description Get all exposant
    * @route   GET  /api/unity/commercial
    */
-   getCoach = asyncHandler(
+  getCoach = asyncHandler(
     async (req: Request, res: Response, next: NextFunction) => {
       const user: any = await users.find({ role: 'coach' }).limit(4);
       const commercialCoaching = []
-      if(user && user.length){
+      if (user && user.length) {
         for (let i = 0; i < user.length; i++) {
           commercialCoaching.push({
-            index: i+1,
+            index: i + 1,
             user_id: user[i]
           })
         }
@@ -543,7 +545,7 @@ mot de passe: <strong>${passwordNotCrypted}</strong>`;
         html: content
       };
       try {
-       
+
         console.log("sending email ....", email)
         // await sendMail(email);
 
@@ -578,7 +580,7 @@ mot de passe: <strong>${passwordNotCrypted}</strong>`;
    * @route Get /api/users/coachings
    * 
    */
-  getCoachings = asyncHandler( async(req: Request, res: Response, next: NextFunction) =>{
+  getCoachings = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
     // get date from req.body
     const coachingDate = req.body.coachingDate
 
